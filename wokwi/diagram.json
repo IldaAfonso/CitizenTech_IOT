@@ -1,0 +1,39 @@
+{
+  "version": 1,
+  "author": "CitizenTech",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 0, "left": 0, "attrs": {} },
+    { "type": "wokwi-pushbutton", "id": "btn_emerg", "top": -90, "left": 200, "attrs": { "color": "red", "label": "Emergencia" } },
+    { "type": "wokwi-pushbutton", "id": "btn_caixa", "top": -90, "left": 300, "attrs": { "color": "blue", "label": "Caixa remedios" } },
+    { "type": "wokwi-pir-motion-sensor", "id": "pir", "top": -150, "left": 400, "attrs": {} },
+    { "type": "wokwi-led", "id": "led_vm", "top": 250, "left": 250, "attrs": { "color": "red" } },
+    { "type": "wokwi-led", "id": "led_am", "top": 250, "left": 310, "attrs": { "color": "yellow" } },
+    { "type": "wokwi-led", "id": "led_vd", "top": 250, "left": 370, "attrs": { "color": "green" } },
+    { "type": "wokwi-resistor", "id": "r1", "top": 190, "left": 240, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r2", "top": 190, "left": 300, "attrs": { "value": "220" } },
+    { "type": "wokwi-resistor", "id": "r3", "top": 190, "left": 360, "attrs": { "value": "220" } },
+    { "type": "wokwi-buzzer", "id": "bz", "top": 100, "left": 450, "attrs": { "volume": "0.1" } }
+  ],
+  "connections": [
+    [ "btn_emerg:1.l", "uno:2", "green", [ "h0" ] ],
+    [ "btn_emerg:2.l", "uno:GND.1", "black", [ "h0" ] ],
+    [ "btn_caixa:1.l", "uno:4", "blue", [ "h0" ] ],
+    [ "btn_caixa:2.l", "uno:GND.1", "black", [ "h0" ] ],
+    [ "pir:VCC", "uno:5V", "red", [ "h0" ] ],
+    [ "pir:OUT", "uno:3", "orange", [ "h0" ] ],
+    [ "pir:GND", "uno:GND.2", "black", [ "h0" ] ],
+    [ "uno:8", "r1:1", "red", [ "h0" ] ],
+    [ "r1:2", "led_vm:A", "red", [ "h0" ] ],
+    [ "led_vm:C", "uno:GND.2", "black", [ "h0" ] ],
+    [ "uno:7", "r2:1", "gold", [ "h0" ] ],
+    [ "r2:2", "led_am:A", "gold", [ "h0" ] ],
+    [ "led_am:C", "uno:GND.2", "black", [ "h0" ] ],
+    [ "uno:6", "r3:1", "green", [ "h0" ] ],
+    [ "r3:2", "led_vd:A", "green", [ "h0" ] ],
+    [ "led_vd:C", "uno:GND.2", "black", [ "h0" ] ],
+    [ "uno:9", "bz:2", "purple", [ "h0" ] ],
+    [ "bz:1", "uno:GND.2", "black", [ "h0" ] ]
+  ],
+  "dependencies": {}
+}
