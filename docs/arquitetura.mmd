@@ -1,0 +1,12 @@
+flowchart LR
+  subgraph CASA["Casa do idoso (rede local)"]
+    S1["Botao de emergencia"] --> UNO
+    S2["Sensor PIR (movimento)"] --> UNO
+    S3["Sensor da caixa de remedios"] --> UNO
+    UNO["Arduino Uno<br/>le sensores e gera evento JSON"] -->|"UART / Serial 9600"| ESP["ESP32 gateway<br/>Wi-Fi"]
+    UNO --> ATU["LEDs e buzzer<br/>(feedback local)"]
+    ESP -->|"Wi-Fi 2.4 GHz"| RT["Roteador Wi-Fi"]
+  end
+  RT -->|"Internet - HTTPS (TCP/443)"| API["API REST CitizenTech<br/>(VM Azure, Docker)"]
+  API --> DB[("Banco de dados<br/>Oracle")]
+  API -->|"Notificacao"| APP["App do cuidador<br/>(Flutter)"]
